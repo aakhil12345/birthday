@@ -1,162 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday 3D with Roses</title>
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
-      height: 100vh;
-      overflow: hidden;
-      perspective: 1000px;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<meta charset="UTF-8">
+<title>Happy Birthday 3D Celebration</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+    background-size: 800% 800%;
+    animation: bgAnimation 15s ease infinite;
+  }
 
-    .center-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      flex-direction: column;
-      transform-style: preserve-3d;
-      animation: rotate 10s infinite linear;
-      position: relative;
-      z-index: 1;
-    }
+  @keyframes bgAnimation {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
 
-    .text {
-      font-size: 60px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #1fb5eb;
-      text-shadow: 2px 2px 5px #00000050;
-      animation: float 3s ease-in-out infinite;
-    }
-    .center-img {
-  width: 250px;
-  margin-bottom: 20px;
-  animation: float 3s ease-in-out infinite;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    padding: 20px;
+  }
 
+  .center-img {
+    width: 220px;
+    max-width: 90%;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite, glow 2s alternate infinite;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  }
 
-    .name {
-      font-size: 30px;
-      color: #d500f9;
-      margin-top: 20px;
-    }
+  @keyframes float {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+  }
 
+  @keyframes glow {
+    0% {box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);}
+    100% {box-shadow: 0 0 35px rgba(255, 255, 255, 0.9);}
+  }
 
+  .text {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
+    animation: popIn 2s ease forwards;
+  }
 
-    .sparkle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: white;
-      border-radius: 50%;
-      animation: sparkleAnim 3s infinite;
-    }
+  .name {
+    font-size: 1.8rem;
+    color: #ffe53b;
+    text-shadow: 0 0 10px #ff2525;
+    animation: fadeInUp 2s ease forwards;
+    margin-top: 10px;
+  }
 
-    @keyframes sparkleAnim {
-      0% {
-        transform: scale(0) translateY(0);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.5) translateY(-50px);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(0) translateY(-100px);
-        opacity: 0;
-      }
-    }
+  @keyframes popIn {
+    0% {transform: scale(0); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+  }
 
-    .rose {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #e80996 0%, #880e4f 70%);
-      animation: floatUp 12s infinite ease-in-out;
-      opacity: 1.0;
-      z-index: 0;
-    }
+  @keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(30px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
 
-    .rose:nth-child(1) {
-      left: 10%;
-      top: 90%;
-      animation-delay: 0s;
-    }
+  /* Floating balloons */
+  .balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 60px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff4ecd);
+    border-radius: 50% 50% 50% 50%;
+    animation: rise 10s infinite ease-in;
+  }
 
-    .rose:nth-child(2) {
-      left: 30%;
-      top: 95%;
-      animation-delay: 2s;
-    }
+  .balloon:nth-child(1) {left: 10%; animation-delay: 0s;}
+  .balloon:nth-child(2) {left: 30%; animation-delay: 2s;}
+  .balloon:nth-child(3) {left: 50%; animation-delay: 4s;}
+  .balloon:nth-child(4) {left: 70%; animation-delay: 1s;}
+  .balloon:nth-child(5) {left: 90%; animation-delay: 3s;}
 
-    .rose:nth-child(3) {
-      left: 50%;
-      top: 92%;
-      animation-delay: 4s;
-    }
+  @keyframes rise {
+    0% {transform: translateY(0) rotate(0deg);}
+    50% {transform: translateY(-300px) rotate(10deg);}
+    100% {transform: translateY(-600px) rotate(-10deg);}
+  }
 
-    .rose:nth-child(4) {
-      left: 70%;
-      top: 94%;
-      animation-delay: 6s;
-    }
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    opacity: 0.7;
+    animation: fall 5s infinite linear;
+  }
+  .confetti:nth-child(odd) {background: #ff4ecd;}
+  .confetti:nth-child(even) {background: #ffe53b;}
 
-    .rose:nth-child(5) {
-      left: 90%;
-      top: 96%;
-      animation-delay: 8s;
-    }
+  @keyframes fall {
+    0% {transform: translateY(0) rotate(0);}
+    100% {transform: translateY(800px) rotate(360deg);}
+  }
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.9;
-      }
-      50% {
-        transform: translateY(-200px) scale(1.2);
-        opacity: 0.6;
-      }
-      100% {
-        transform: translateY(-400px) scale(0.8);
-        opacity: 0;
-      }
-    }
-  </style>
+  @media (max-width: 768px) {
+    .text {font-size: 2.5rem;}
+    .name {font-size: 1.2rem;}
+    .center-img {width: 180px;}
+  }
+</style>
 </head>
 <body>
 
-  <!-- Floating Roses -->
-  <div class="rose"></div>
-  <div class="rose"></div>
-  <div class="rose"></div>
-  <div class="rose"></div>
-  <div class="rose"></div>
+<!-- Balloons -->
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
 
-  <!-- Centered Text Content -->
-  <div class="center-content">
+<!-- Confetti -->
+<div class="confetti" style="left: 5%; animation-delay: 0s;"></div>
+<div class="confetti" style="left: 20%; animation-delay: 1s;"></div>
+<div class="confetti" style="left: 35%; animation-delay: 2s;"></div>
+<div class="confetti" style="left: 50%; animation-delay: 3s;"></div>
+<div class="confetti" style="left: 65%; animation-delay: 1.5s;"></div>
+<div class="confetti" style="left: 80%; animation-delay: 0.5s;"></div>
+
+<!-- Main content -->
+<div class="center-content">
   <img src="sk.jpg" alt="Birthday Cake" class="center-img">
-
-
   <div class="text">Happy Birthday</div>
-  <div class="name">shaik humaira kousar</div>
-  </div>
-  <audio autoplay loop>
-  <source src="https://open.spotify.com/track/5OMUXgfXsSukZ0zxelpC3b?si=06062b38a9ee4b82" type="audio/mpeg">
-  Your browser does not support the audio element.
+  <div class="name">Shaik Humaira Kousar</div>
+</div>
+
+<!-- Music -->
+<audio autoplay loop>
+  <source src="your-music.mp3" type="audio/mpeg">
 </audio>
 
-
-  <!-- Optional Sparkles -->
-  <div class="sparkle" style="top: 20%; left: 25%; animation-delay: 0s;"></div>
-  <div class="sparkle" style="top: 40%; left: 60%; animation-delay: 1s;"></div>
-  <div class="sparkle" style="top: 70%; left: 45%; animation-delay: 2s;"></div>
 </body>
 </html>
