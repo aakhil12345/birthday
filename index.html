@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday 3D with Roses</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      height: 100vh;
+      overflow: hidden;
+      perspective: 1000px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .center-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex-direction: column;
+      transform-style: preserve-3d;
+      animation: rotate 10s infinite linear;
+      position: relative;
+      z-index: 1;
+    }
+
+    .text {
+      font-size: 60px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #1fb5eb;
+      text-shadow: 2px 2px 5px #00000050;
+      animation: float 3s ease-in-out infinite;
+    }
+    .center-img {
+  width: 250px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+    .name {
+      font-size: 30px;
+      color: #d500f9;
+      margin-top: 20px;
+    }
+
+
+
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkleAnim 3s infinite;
+    }
+
+    @keyframes sparkleAnim {
+      0% {
+        transform: scale(0) translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5) translateY(-50px);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(0) translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    .rose {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #e80996 0%, #880e4f 70%);
+      animation: floatUp 12s infinite ease-in-out;
+      opacity: 1.0;
+      z-index: 0;
+    }
+
+    .rose:nth-child(1) {
+      left: 10%;
+      top: 90%;
+      animation-delay: 0s;
+    }
+
+    .rose:nth-child(2) {
+      left: 30%;
+      top: 95%;
+      animation-delay: 2s;
+    }
+
+    .rose:nth-child(3) {
+      left: 50%;
+      top: 92%;
+      animation-delay: 4s;
+    }
+
+    .rose:nth-child(4) {
+      left: 70%;
+      top: 94%;
+      animation-delay: 6s;
+    }
+
+    .rose:nth-child(5) {
+      left: 90%;
+      top: 96%;
+      animation-delay: 8s;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.9;
+      }
+      50% {
+        transform: translateY(-200px) scale(1.2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-400px) scale(0.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Roses -->
+  <div class="rose"></div>
+  <div class="rose"></div>
+  <div class="rose"></div>
+  <div class="rose"></div>
+  <div class="rose"></div>
+
+  <!-- Centered Text Content -->
+  <div class="center-content">
+  <img src="sk.jpg" alt="Birthday Cake" class="center-img">
+
+
+  <div class="text">Happy Birthday</div>
+  <div class="name">shaik humaira kousar</div>
+  </div>
+  <audio autoplay loop>
+  <source src="https://open.spotify.com/track/5OMUXgfXsSukZ0zxelpC3b?si=06062b38a9ee4b82" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+  <!-- Optional Sparkles -->
+  <div class="sparkle" style="top: 20%; left: 25%; animation-delay: 0s;"></div>
+  <div class="sparkle" style="top: 40%; left: 60%; animation-delay: 1s;"></div>
+  <div class="sparkle" style="top: 70%; left: 45%; animation-delay: 2s;"></div>
+</body>
+</html>
