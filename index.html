@@ -2,103 +2,85 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday 3D Celebration</title>
+<title>Happy Birthday Celebration</title>
 <style>
   body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-    background-size: 800% 800%;
-    animation: bgAnimation 15s ease infinite;
+    background: #0f0f2d;
+    position: relative;
   }
 
-  @keyframes bgAnimation {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-  }
-
+  /* Main content */
   .center-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
     text-align: center;
-    z-index: 2;
-    position: relative;
-    padding: 20px;
+    z-index: 10;
   }
 
   .center-img {
-    width: 220px;
-    max-width: 90%;
+    width: 230px;
     margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite, glow 2s alternate infinite;
     border-radius: 15px;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    animation: bounce 1.5s infinite;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
   }
 
-  @keyframes float {
-    0%, 100% {transform: translateY(0);}
-    50% {transform: translateY(-15px);}
-  }
-
-  @keyframes glow {
-    0% {box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);}
-    100% {box-shadow: 0 0 35px rgba(255, 255, 255, 0.9);}
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
   }
 
   .text {
     font-size: 3.5rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 10px #ff6ec4, 0 0 20px #7873f5;
-    animation: popIn 2s ease forwards;
+    color: #ffdd1a;
+    text-shadow: 0 0 15px #ff6ec4, 0 0 25px #ff2525;
+    animation: pop 1s ease forwards;
   }
 
   .name {
     font-size: 1.8rem;
-    color: #ffe53b;
-    text-shadow: 0 0 10px #ff2525;
-    animation: fadeInUp 2s ease forwards;
-    margin-top: 10px;
+    color: #00f5ff;
+    text-shadow: 0 0 15px #00f5ff, 0 0 25px #a6ff00;
+    animation: pop 1.2s ease forwards;
   }
 
-  @keyframes popIn {
-    0% {transform: scale(0); opacity: 0;}
-    100% {transform: scale(1); opacity: 1;}
+  @keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
   }
 
-  @keyframes fadeInUp {
-    0% {opacity: 0; transform: translateY(30px);}
-    100% {opacity: 1; transform: translateY(0);}
-  }
-
-  /* Floating balloons */
+  /* Balloons */
   .balloon {
     position: absolute;
     bottom: -150px;
     width: 60px;
     height: 80px;
-    background: radial-gradient(circle at 30% 30%, #fff, #ff4ecd);
-    border-radius: 50% 50% 50% 50%;
-    animation: rise 10s infinite ease-in;
+    border-radius: 50%;
+    animation: rise 8s infinite ease-in;
+    z-index: 5;
   }
 
-  .balloon:nth-child(1) {left: 10%; animation-delay: 0s;}
-  .balloon:nth-child(2) {left: 30%; animation-delay: 2s;}
-  .balloon:nth-child(3) {left: 50%; animation-delay: 4s;}
-  .balloon:nth-child(4) {left: 70%; animation-delay: 1s;}
-  .balloon:nth-child(5) {left: 90%; animation-delay: 3s;}
+  .balloon:nth-child(1) { left: 10%; background: #ff4ecd; animation-delay: 0s; }
+  .balloon:nth-child(2) { left: 30%; background: #00f5ff; animation-delay: 2s; }
+  .balloon:nth-child(3) { left: 50%; background: #ffe53b; animation-delay: 4s; }
+  .balloon:nth-child(4) { left: 70%; background: #ff6ec4; animation-delay: 1s; }
+  .balloon:nth-child(5) { left: 90%; background: #a6ff00; animation-delay: 3s; }
 
   @keyframes rise {
-    0% {transform: translateY(0) rotate(0deg);}
-    50% {transform: translateY(-300px) rotate(10deg);}
-    100% {transform: translateY(-600px) rotate(-10deg);}
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-300px) rotate(15deg); }
+    100% { transform: translateY(-650px) rotate(-15deg); }
   }
 
   /* Confetti */
@@ -106,26 +88,33 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background: #fff;
-    opacity: 0.7;
-    animation: fall 5s infinite linear;
+    animation: fall 4s infinite linear;
+    z-index: 6;
   }
-  .confetti:nth-child(odd) {background: #ff4ecd;}
-  .confetti:nth-child(even) {background: #ffe53b;}
 
   @keyframes fall {
-    0% {transform: translateY(0) rotate(0);}
-    100% {transform: translateY(800px) rotate(360deg);}
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(700px) rotate(360deg); }
+  }
+
+  /* Fireworks canvas */
+  #fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 
   @media (max-width: 768px) {
-    .text {font-size: 2.5rem;}
-    .name {font-size: 1.2rem;}
-    .center-img {width: 180px;}
+    .text { font-size: 2rem; }
+    .name { font-size: 1.2rem; }
+    .center-img { width: 180px; }
   }
 </style>
 </head>
 <body>
+
+<canvas id="fireworks"></canvas>
 
 <!-- Balloons -->
 <div class="balloon"></div>
@@ -135,19 +124,75 @@
 <div class="balloon"></div>
 
 <!-- Confetti -->
-<div class="confetti" style="left: 5%; animation-delay: 0s;"></div>
-<div class="confetti" style="left: 20%; animation-delay: 1s;"></div>
-<div class="confetti" style="left: 35%; animation-delay: 2s;"></div>
-<div class="confetti" style="left: 50%; animation-delay: 3s;"></div>
-<div class="confetti" style="left: 65%; animation-delay: 1.5s;"></div>
-<div class="confetti" style="left: 80%; animation-delay: 0.5s;"></div>
+<script>
+  for (let i = 0; i < 50; i++) {
+    let conf = document.createElement("div");
+    conf.classList.add("confetti");
+    conf.style.left = Math.random() * 100 + "%";
+    conf.style.backgroundColor = ["#ff4ecd","#00f5ff","#ffe53b","#ff6ec4","#a6ff00"][Math.floor(Math.random()*5)];
+    conf.style.animationDelay = (Math.random() * 4) + "s";
+    document.body.appendChild(conf);
+  }
+</script>
 
-<!-- Main content -->
+<!-- Main Content -->
 <div class="center-content">
   <img src="sk.jpg" alt="Birthday Cake" class="center-img">
   <div class="text">Happy Birthday</div>
   <div class="name">Shaik Humaira Kousar</div>
 </div>
+
+<!-- Fireworks Animation -->
+<script>
+  const canvas = document.getElementById('fireworks');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  function random(min, max) { return Math.random() * (max - min) + min; }
+
+  function createFirework() {
+    const x = random(100, canvas.width - 100);
+    const y = random(50, canvas.height / 2);
+    const color = `hsl(${random(0, 360)}, 100%, 60%)`;
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x, y,
+        angle: random(0, Math.PI * 2),
+        speed: random(2, 7),
+        radius: 3,
+        alpha: 1,
+        decay: random(0.015, 0.03),
+        color
+      });
+    }
+  }
+
+  function animateFireworks() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+      p.x += Math.cos(p.angle) * p.speed;
+      p.y += Math.sin(p.angle) * p.speed;
+      p.alpha -= p.decay;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${parseInt(p.color.match(/\d+/g)[0])},${parseInt(p.color.match(/\d+/g)[1])},${parseInt(p.color.match(/\d+/g)[2])},${p.alpha})`;
+      ctx.fill();
+      if (p.alpha <= 0) particles.splice(i, 1);
+    });
+    requestAnimationFrame(animateFireworks);
+  }
+
+  setInterval(createFirework, 800);
+  animateFireworks();
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
 
 <!-- Music -->
 <audio autoplay loop>
