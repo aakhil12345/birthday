@@ -4,209 +4,175 @@
 <meta charset="UTF-8">
 <title>Happy Birthday Celebration</title>
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at center, #1a1a1a, #000);
-    position: relative;
-    color: #FFD700;
-  }
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+        font-family: 'Segoe UI', sans-serif;
+        position: relative;
+    }
 
-  /* Main content */
-  .center-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    z-index: 10;
-  }
+    /* Fireworks Canvas */
+    #fireworks {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 0;
+    }
 
-  .center-img {
-    width: 230px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    animation: bounce 1.5s infinite;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
-    border: 4px solid gold;
-  }
+    /* Centered Content */
+    .center-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        padding: 20px;
+    }
 
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
+    .center-img {
+        width: 200px;
+        max-width: 80%;
+        margin-bottom: 20px;
+        border-radius: 15px;
+        border: 5px solid gold;
+        box-shadow: 0 0 30px gold, 0 0 60px rgba(255,215,0,0.6);
+        animation: pulse 2s infinite alternate;
+    }
 
-  .text {
-    font-size: 3.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: gold;
-    text-shadow: 0 0 15px #FFD700, 0 0 25px #ffec8b, 0 0 35px #ffdf00;
-    animation: sparkle 2s infinite alternate;
-  }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.05); }
+    }
 
-  .name {
-    font-size: 1.8rem;
-    color: #fff7d1;
-    text-shadow: 0 0 15px gold, 0 0 25px #ffec8b;
-    animation: fadeInUp 1.5s ease forwards;
-  }
+    .text {
+        font-size: 60px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #ffd700, #ffb400, #fff4b0, #ffd700);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: goldflow 3s linear infinite, glow 2s ease-in-out infinite alternate;
+    }
 
-  @keyframes sparkle {
-    0% { text-shadow: 0 0 15px #FFD700, 0 0 25px #ffec8b; }
-    100% { text-shadow: 0 0 25px #ffdf00, 0 0 40px #fff7d1; }
-  }
+    @keyframes goldflow {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
 
-  @keyframes fadeInUp {
-    0% {opacity: 0; transform: translateY(30px);}
-    100% {opacity: 1; transform: translateY(0);}
-  }
+    @keyframes glow {
+        from { text-shadow: 0 0 10px gold, 0 0 20px orange; }
+        to { text-shadow: 0 0 30px gold, 0 0 50px orange; }
+    }
 
-  /* Balloons */
-  .balloon {
-    position: absolute;
-    bottom: -150px;
-    width: 60px;
-    height: 80px;
-    border-radius: 50%;
-    animation: rise 8s infinite ease-in;
-    z-index: 5;
-    background: radial-gradient(circle at 30% 30%, #fff4c2, #FFD700);
-    box-shadow: 0 0 15px gold;
-  }
-
-  .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
-  .balloon:nth-child(2) { left: 30%; animation-delay: 2s; }
-  .balloon:nth-child(3) { left: 50%; animation-delay: 4s; }
-  .balloon:nth-child(4) { left: 70%; animation-delay: 1s; }
-  .balloon:nth-child(5) { left: 90%; animation-delay: 3s; }
-
-  @keyframes rise {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-300px) rotate(15deg); }
-    100% { transform: translateY(-650px) rotate(-15deg); }
-  }
-
-  /* Confetti */
-  .confetti {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    animation: fall 4s infinite linear;
-    z-index: 6;
-    background-color: gold;
-    box-shadow: 0 0 5px gold;
-  }
-
-  @keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY(700px) rotate(360deg); }
-  }
-
-  /* Fireworks canvas */
-  #fireworks {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    .text { font-size: 2rem; }
-    .name { font-size: 1.2rem; }
-    .center-img { width: 180px; }
-  }
+    .name {
+        font-size: 30px;
+        color: #ffecb3;
+        text-shadow: 0 0 10px gold, 0 0 20px orange;
+        margin-top: 10px;
+    }
 </style>
 </head>
 <body>
 
 <canvas id="fireworks"></canvas>
 
-<!-- Balloons -->
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-<div class="balloon"></div>
-
-<!-- Confetti -->
-<script>
-  for (let i = 0; i < 50; i++) {
-    let conf = document.createElement("div");
-    conf.classList.add("confetti");
-    conf.style.left = Math.random() * 100 + "%";
-    conf.style.animationDelay = (Math.random() * 4) + "s";
-    document.body.appendChild(conf);
-  }
-</script>
-
-<!-- Main Content -->
 <div class="center-content">
-  <img src="sk.jpg" alt="Birthday Cake" class="center-img">
-  <div class="text">Happy Birthday</div>
-  <div class="name">Shaik Humaira Kousar</div>
+    <img src="sk.jpg" alt="Birthday" class="center-img">
+    <div class="text">Happy Birthday</div>
+    <div class="name">Shaik Humaira Kousar</div>
 </div>
 
-<!-- Fireworks Animation -->
+<audio autoplay loop>
+    <source src="birthday.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
 <script>
-  const canvas = document.getElementById('fireworks');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
+/* Fireworks Effect */
+const canvas = document.getElementById('fireworks');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+let fireworks = [];
 
-  function random(min, max) { return Math.random() * (max - min) + min; }
-
-  function createFirework() {
-    const x = random(100, canvas.width - 100);
-    const y = random(50, canvas.height / 2);
-    const color = "rgb(255, 215, 0)"; // gold color
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x, y,
-        angle: random(0, Math.PI * 2),
-        speed: random(2, 7),
-        radius: 3,
-        alpha: 1,
-        decay: random(0.015, 0.03),
-        color
-      });
+class Firework {
+    constructor(x, y, colors) {
+        this.x = x;
+        this.y = y;
+        this.colors = colors;
+        this.particles = [];
+        for (let i = 0; i < 60; i++) {
+            this.particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+        }
     }
-  }
+    update() {
+        this.particles.forEach(p => p.update());
+    }
+    draw() {
+        this.particles.forEach(p => p.draw());
+    }
+}
 
-  function animateFireworks() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach((p, i) => {
-      p.x += Math.cos(p.angle) * p.speed;
-      p.y += Math.sin(p.angle) * p.speed;
-      p.alpha -= p.decay;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 215, 0, ${p.alpha})`;
-      ctx.fill();
-      if (p.alpha <= 0) particles.splice(i, 1);
+class Particle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speed = Math.random() * 5 + 2;
+        this.angle = Math.random() * 2 * Math.PI;
+        this.life = 100;
+    }
+    update() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+        this.speed *= 0.95;
+        this.life--;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function animate() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    fireworks.forEach((f, i) => {
+        f.update();
+        f.draw();
+        if (f.particles[0].life <= 0) {
+            fireworks.splice(i, 1);
+        }
     });
-    requestAnimationFrame(animateFireworks);
-  }
 
-  setInterval(createFirework, 800);
-  animateFireworks();
+    requestAnimationFrame(animate);
+}
 
-  window.addEventListener("resize", () => {
+function randomFirework() {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height / 2;
+    let colors = ["#FFD700", "#FFA500", "#FF4500", "#FFFFFF"];
+    fireworks.push(new Firework(x, y, colors));
+}
+
+setInterval(randomFirework, 700);
+animate();
+
+window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  });
+});
 </script>
-
-<!-- Music -->
-<audio autoplay loop>
-  <source src="your-music.mp3" type="audio/mpeg">
-</audio>
 
 </body>
 </html>
